@@ -851,7 +851,7 @@ class WumpusKB(PropKB):
         wumpus_at_least = list()
         for x in range(1, dimrow+1):
             for y in range(1, dimrow + 1):
-                wumps_at_least.append(wumpus(x, y))
+                wumpus_at_least.append(wumpus(x, y))
 
         self.tell(new_disjunction(wumpus_at_least))
 
@@ -1157,7 +1157,7 @@ class HybridWumpusAgent(agents.Agent):
 
         # Can't have a shooting position from any of the rooms the Wumpus could reside
         orientations = ['EAST', 'WEST', 'NORTH', 'SOUTH']
-        for loc in goals:            
+        for loc in goals:
             for orientation in orientations:
                 shooting_positions.remove(WumpusPosition(loc[0], loc[1], orientation))
 
