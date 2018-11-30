@@ -275,6 +275,7 @@ class Environment:
 
     def percept(self, agent):
         """Return the percept that the agent sees at this point. (Implement this.)"""
+
         raise NotImplementedError
 
     def execute_action(self, agent, action):
@@ -515,12 +516,12 @@ class XYEnvironment(Environment):
 
     def random_location_inbounds(self, exclude=None):
         """Returns a random location that is inbounds (within walls if we have walls)"""
-        location = (random.randint(self.x_start, self.x_end),
-                    random.randint(self.y_start, self.y_end))
+        location = (random.randint(self.x_start, self.x_end-1),
+                    random.randint(self.y_start, self.y_end-1))
         if exclude is not None:
             while(location == exclude):
-                location = (random.randint(self.x_start, self.x_end),
-                            random.randint(self.y_start, self.y_end))
+                location = (random.randint(self.x_start, self.x_end-1),
+                            random.randint(self.y_start, self.y_end-1))
         return location
 
     def delete_thing(self, thing):
