@@ -8,8 +8,9 @@ from agents import *
 agt = KB_AgentProgram(WumpusKB(4))
 env = WumpusEnvironment(agt)
 print(env.agents)
+
+# print board
 def prettyPrint():
-    # print board
     for something in env.get_world():
         endS = ""
         for x in something:
@@ -63,7 +64,7 @@ while not env.is_done():
     percepts = env.percept(env.agents[1])
     print(percepts)
     # asks knowledge base what to do
-    wumpus_kb.tell(percepts)
+    
     # execute action
-    env.execute_action(env.agents[1], action)
+    
     # repeat
