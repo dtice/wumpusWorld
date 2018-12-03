@@ -13,9 +13,9 @@ def agent_program(percept):
     action = agt.execute(percept)
     return action
 
-env = WumpusEnvironment(agent_program)
+env = WumpusEnvironment(KB_AgentProgram(agt.kb))
 print(env.agents)
-
+env.run()
 # print board
 def prettyPrint():
     for something in env.get_world():
@@ -65,6 +65,4 @@ def prettyPrint():
     print(" ")
     print(" ")
 # main loop for agent performing actions
-while not env.is_done():
-    prettyPrint()
-    env.step()
+

@@ -894,27 +894,26 @@ class WumpusKB(PropKB):
     def make_percept_sentence(self, percept, time):
         # Glitter, Bump, Stench, Breeze, Scream
         flags = [0, 0, 0, 0, 0]
-
         ## Things perceived
-        if isinstance(percept, Glitter):
+        if isinstance(percept[0], agents.Glitter):
             flags[0] = 1
             self.tell(percept_glitter(time))
-        elif isinstance(percept, Bump):
+        elif isinstance(percept[0], agents.Bump):
             flags[1] = 1
             self.tell(percept_bump(time))
-        elif isinstance(percept, Stench):
+        elif isinstance(percept, agents.Stench):
             flags[2] = 1
             self.tell(percept_stench(time))
-        elif isinstance(percept, Breeze):
+        elif isinstance(percept, agents.Breeze):
             flags[3] = 1
             self.tell(percept_breeze(time))
-        elif isinstance(percept, Scream):
+        elif isinstance(percept, agents.Scream):
             flags[4] = 1
             self.tell(percept_scream(time))
 
         ## Things not perceived
-        for i in len(range(flags)):
-            if flags[i] == 0:
+        for i, e in enumerate(flags):
+            if e == 0:
                 if i == 0:
                     self.tell(~percept_glitter(time))
                 elif i == 1:
