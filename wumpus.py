@@ -5,8 +5,15 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from logic import *
 from agents import *
 
-agt = KB_AgentProgram(WumpusKB(4))
-env = WumpusEnvironment(agt)
+
+agt = HybridWumpusAgent()
+
+
+def agent_program(percept):
+    action = agt.execute(percept)
+    return action
+
+env = WumpusEnvironment(agent_program)
 print(env.agents)
 
 # print board
@@ -60,11 +67,4 @@ def prettyPrint():
 # main loop for agent performing actions
 while not env.is_done():
     prettyPrint()
-    # agent takes in percepts
-    percepts = env.percept(env.agents[1])
-    print(percepts)
-    # asks knowledge base what to do
-    
-    # execute action
-    
-    # repeat
+    env.step()
