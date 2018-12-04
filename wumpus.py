@@ -7,14 +7,7 @@ from agents import *
 
 
 agt = HybridWumpusAgent()
-
-
-def agent_program(percept):
-    action = agt.execute(percept)
-    return action
-
-env = WumpusEnvironment(KB_AgentProgram(agt.kb))
-print(env.agents)
+env = WumpusEnvironment()
 env.run()
 # print board
 def prettyPrint():
@@ -65,4 +58,3 @@ def prettyPrint():
     print(" ")
     print(" ")
 # main loop for agent performing actions
-
