@@ -868,8 +868,8 @@ class Explorer(Agent):
     killed_by = ""
     direction = Direction("right")
 
-    def __init__(self, agent_program):
-        super().__init__(program=agent_program)
+    #def __init__(self, agent_program):
+        #super().__init__(program=agent_program)
 
     def can_grab(self, thing):
         """Explorer can only grab gold"""

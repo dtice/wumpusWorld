@@ -2,13 +2,19 @@ import random
 import sys
 import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+import logic
 from logic import *
+import agents
 from agents import *
 
+def program(percepts):
+    print(percepts)
+    agt = TraceAgent(HybridWumpusAgent())
+    action = agt.execute(percepts)
+    return action
 
-agt = HybridWumpusAgent()
-env = WumpusEnvironment()
-env.run()
+env = WumpusEnvironment(program)
+
 # print board
 def prettyPrint():
     for something in env.get_world():
@@ -58,3 +64,7 @@ def prettyPrint():
     print(" ")
     print(" ")
 # main loop for agent performing actions
+prettyPrint()
+env.step()
+prettyPrint()
+env.step()
