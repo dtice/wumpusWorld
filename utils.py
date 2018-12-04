@@ -52,6 +52,7 @@ def product(numbers):
 def first(iterable, default=None):
     """Return the first element of an iterable or the next element of a generator; or default."""
     try:
+        iterable = list(iterable)
         return iterable[0]
     except IndexError:
         return default
@@ -287,7 +288,7 @@ def elu(x, alpha=0.01):
 		return x
 	else:
 		return alpha * (math.exp(x) - 1)
-		
+
 def elu_derivative(value, alpha = 0.01):
 	if value > 0:
 		return 1
@@ -314,13 +315,13 @@ def leaky_relu_derivative(value, alpha=0.01):
 
 def relu(x):
 	return max(0, x)
-	
+
 def relu_derivative(value):
 	if value > 0:
 		return 1
 	else:
 		return 0
-		
+
 def step(x):
     """Return activation value of x with sign function"""
     return 1 if x >= 0 else 0

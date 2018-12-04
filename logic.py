@@ -87,10 +87,13 @@ class PropKB(KB):
 
     def tell(self, sentence):
         """Add the sentence's clauses to the KB."""
+        # print(sentence)
         self.clauses.extend(conjuncts(to_cnf(sentence)))
 
     def ask_generator(self, query):
         """Yield the empty substitution {} if KB entails query; else no results."""
+        print(query)
+        #print(self.clauses)
         if tt_entails(Expr('&', *self.clauses), query):
             yield {}
 
@@ -114,9 +117,13 @@ def KB_AgentProgram(KB):
     steps = itertools.count()
 
     def program(percept):
+        #print(percept)
         t = next(steps)
+        #print(make_percept_sentence(percept, t))
         KB.tell(make_percept_sentence(percept, t))
+        #print(make_action_query(t))
         action = KB.ask(make_action_query(t))
+        # print(action)
         KB.tell(make_action_sentence(action, t))
         return action
 
@@ -205,6 +212,7 @@ def tt_entails(kb, alpha):
     >>> tt_entails(expr('P & Q'), expr('Q'))
     True
     """
+    #print(alpha)
     assert not variables(alpha)
     symbols = list(prop_symbols(kb & alpha))
     return tt_check_all(kb, alpha, symbols, {})

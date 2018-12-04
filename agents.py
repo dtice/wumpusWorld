@@ -41,6 +41,7 @@ from statistics import mean
 import random
 import copy
 import collections
+import logic
 
 
 # ______________________________________________________________________________
@@ -86,6 +87,8 @@ class Agent(Thing):
         self.bump = False
         self.holding = []
         self.performance = 0
+        print(self)
+        print(program)
         if program is None or not isinstance(program, collections.Callable):
             print("Can't find a valid program for {}, falling back to default.".format(
                 self.__class__.__name__))
@@ -104,6 +107,7 @@ class Agent(Thing):
 def TraceAgent(agent):
     """Wrap the agent's program to print its input and output. This will let
     you see what the agent is doing in the environment."""
+    # old_program = agent.program
     old_program = agent.program
 
     def new_program(percept):
@@ -303,6 +307,7 @@ class Environment:
             actions = []
             for agent in self.agents:
                 if agent.alive:
+                    #print(agent.program(self.percept(agent)))
                     actions.append(agent.program(self.percept(agent)))
                 else:
                     actions.append("")
@@ -520,11 +525,11 @@ class XYEnvironment(Environment):
             agent.direction += Direction.L
         elif action == 'Forward':
             agent.bump = self.move_to(agent, agent.direction.move_forward(agent.location))
-#         elif action == 'Grab':
-#             things = [thing for thing in self.list_things_at(agent.location)
-#                     if agent.can_grab(thing)]
-#             if things:
-#                 agent.holding.append(things[0])
+        # elif action == 'Grab':
+            # things = [thing for thing in self.list_things_at(agent.location)
+            # if agent.can_grab(thing)]
+                # if things:
+                    # agent.holding.append(things[0])
         elif action == 'Release':
             if agent.holding:
                 agent.holding.pop()
@@ -868,7 +873,7 @@ class Explorer(Agent):
     killed_by = ""
     direction = Direction("right")
 
-    #def __init__(self, agent_program):
+    #def __init__(Agent, agent_program):
         #super().__init__(program=agent_program)
 
     def can_grab(self, thing):
@@ -880,7 +885,7 @@ class WumpusEnvironment(XYEnvironment):
     pit_probability = 0.2  # Probability to spawn a pit in a location. (From Chapter 7.2)
     # Room should be 4x4 grid of rooms. The extra 2 for walls
 
-    def __init__(self, agent_program, width=6, height=6):
+    def __init__(self, agent_program=None, width=6, height=6):
         super().__init__(width, height)
         self.init_world(agent_program)
 

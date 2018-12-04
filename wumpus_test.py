@@ -6,14 +6,8 @@ import logic
 from logic import *
 import agents
 from agents import *
-
-# Hybrid Wumpus Agent, which combines a Knowledge Base with Logical Inference
 agt = HybridWumpusAgent()
-
-# Wumpus Environment, which sets up the environment
-env = WumpusEnvironment()
-
-# print board
+env = WumpusEnvironment(KB_AgentProgram(agt.kb))
 def prettyPrint():
     for something in env.get_world():
         endS = ""
@@ -61,8 +55,3 @@ def prettyPrint():
     print(" ")
     print(" ")
     print(" ")
-
-# main loop for agent performing actions
-while not env.is_done():
-    prettyPrint()
-    env.run()
