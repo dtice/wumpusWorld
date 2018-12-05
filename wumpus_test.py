@@ -55,3 +55,6 @@ def prettyPrint():
     print(" ")
     print(" ")
     print(" ")
+
+
+prettyPrint()
