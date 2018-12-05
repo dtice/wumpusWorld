@@ -1,20 +1,22 @@
-import random
+import logic
+import agents
 import sys
 import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-import logic
-from logic import *
-import agents
-from agents import *
 
 
 class WumpusWorld():
     def __init__(self, size):
-        self.agt = HybridWumpusAgent()
-        self.env = WumpusEnvironment(KB_AgentProgram(self.agt.kb), size, size)
+        self.agt = logic.HybridWumpusAgent()
+        self.env = agents.WumpusEnvironment(logic.KB_AgentProgram(self.agt.kb),
+                                            size, size)
         self.prettyPrint(self.env)
+        # self.prettyPrint(self.env, output=True)
 
-    def prettyPrint(self, env):
+    def prettyPrint(self, env, output=False):
+        # initialize output file
+        if output:
+            f = open("output.txt", "w+")
         for something in env.get_world():
             endS = ""
             for x in something:
@@ -57,7 +59,12 @@ class WumpusWorld():
                     tempS3 = str(x[3])
                     tempS3 = tempS2[1]
                     endS = endS + tempS + tempS1 + tempS2 + tempS3
-            print(endS)
+            if output:
+                f.write(endS + "\r\n")
+            else:
+                print(endS)
+        if output:
+            f.close()
         print(" ")
         print(" ")
         print(" ")

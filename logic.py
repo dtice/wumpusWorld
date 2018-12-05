@@ -804,7 +804,6 @@ class HybridWumpusAgent(agents.Agent):
         self.plan = list()
         self.current_position = WumpusPosition(1, 1, 'UP')
 
-
     def execute(self, percept):
         self.kb.make_percept_sentence(percept, self.t)
         self.kb.add_temporal_sentences(self.t)

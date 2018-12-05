@@ -1,0 +1,57 @@
+Legend:
+ - E: Explorer
+ - W: Wumpus
+ - G: Gold
+ - P: Pit
+ - S: Stench
+ - B: Breeze
+ - X: Wall
+
+Output:
+
+4x4:
+-----------------------
+XX  X   X   X   X   XX
+X   E               X
+X       S       G   X
+X   S   W   BS      X
+X       BS  P   B   X
+XX  X   X   X   X   XX
+
+5x5:
+---------------------------
+XX  X   X   X   X   X   XX
+X   PE  B           G   X
+X   B                   X
+X   B           S       X
+X   PB  B   S   W   BS  X
+X   BP  B       BS  P   X
+XX  X   X   X   X   X   XX
+
+8x8:
+---------------------------------------
+XX  X   X   X   X   X   X   X   X   XX
+X   E   B   B   PS  B               X
+X   B   PB  BPS BW  S       B   B   X
+X   B   BP  B   S       B   PB  BP  X
+X   B   B               G   B   B   X
+X   P   B       B               B   X
+X   B       B   P   B   B   B   P   X
+X   P   B   PB  B   B   P   B   B   X
+X   B   B   BP  B       B           X
+XX  X   X   X   X   X   X   X   X   XX
+
+10x10:
+-----------------------------------------------
+XX  X   X   X   X   X   X   X   X   X   X   XX
+X   BE  PB  B   P   B   B   PB  BP  B       X
+X   B   BP  BP  B   PB  BP  B   B       B   X
+X   B   B   B   P   B   B   P   B   B   PB  X
+X   PB  BP  BP  B           B       B   BP  X
+X   B   B   B           S   B   B   P   B   X
+X       B           BS  BW  PBS BP  B   B   X
+X   B   P   B   B   PB  BPS BP  B   B   PB  X
+X   P   B   PBG BP  BP  B   BP  B   B   BP  X
+X   B       B   B   B       B   P   B   BP  X
+X                       B   P   B       B   X
+XX  X   X   X   X   X   X   X   X   X   X   XX
