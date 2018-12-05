@@ -64,10 +64,10 @@ class WumpusWorld():
 
 
 def main():
-    w = WumpusWorld(4)
-    w = WumpusWorld(5)
-    w = WumpusWorld(8)
+    w = WumpusWorld(6)
+    w = WumpusWorld(7)
     w = WumpusWorld(10)
+    w = WumpusWorld(12)
 
 
 if __name__ == '__main__':
