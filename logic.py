@@ -565,6 +565,39 @@ def new_disjunction(sentences):
 
 
 # ______________________________________________________________________________
+def pl_resolution(KB, alpha):
+    """Propositional-logic resolution: say if alpha follows from KB. [Figure 7.12]
+    >>> pl_resolution(horn_clauses_KB, A)
+    True
+    """
+    clauses = KB.clauses + conjuncts(to_cnf(~alpha))
+    new = set()
+    while True:
+        n = len(clauses)
+        pairs = [(clauses[i], clauses[j])
+                 for i in range(n) for j in range(i+1, n)]
+        for (ci, cj) in pairs:
+            resolvents = pl_resolve(ci, cj)
+            if False in resolvents:
+                return True
+            new = new.union(set(resolvents))
+        if new.issubset(set(clauses)):
+            return False
+        for c in new:
+            if c not in clauses:
+                clauses.append(c)
+
+
+def pl_resolve(ci, cj):
+    """Return all clauses that can be obtained by resolving clauses ci and cj."""
+    clauses = []
+    for di in disjuncts(ci):
+        for dj in disjuncts(cj):
+            if di == ~dj or ~di == dj:
+                dnew = unique(removeall(di, disjuncts(ci)) +
+                              removeall(dj, disjuncts(cj)))
+                clauses.append(associate('|', dnew))
+    return clauses
 
 
 class WumpusKB(PropKB):

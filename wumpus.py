@@ -7,11 +7,17 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 class WumpusWorld():
     def __init__(self, size):
-        self.agt = logic.HybridWumpusAgent()
-        self.env = agents.WumpusEnvironment(logic.KB_AgentProgram(self.agt.kb),
-                                            size, size)
+        # Creates HybridWumpusAgentProgram
+        # Creates WumpusEnvironment with given size parameter
+        self.env = agents.WumpusEnvironment(self.program, size, size)
         self.prettyPrint(self.env)
+        self.env.run()
         # self.prettyPrint(self.env, output=True)
+
+    def program(self, percepts):
+        self.agt = logic.HybridWumpusAgent()
+        action = self.agt.execute(percepts)
+        return action
 
     def prettyPrint(self, env, output=False):
         # initialize output file
