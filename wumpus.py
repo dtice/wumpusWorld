@@ -63,12 +63,5 @@ class WumpusWorld():
         print(" ")
 
 
-def main():
-    w = WumpusWorld(6)
-    w = WumpusWorld(7)
-    w = WumpusWorld(10)
-    w = WumpusWorld(12)
-
-
 if __name__ == '__main__':
-    main()
+    WumpusWorld(int(sys.argv[1]) + 2)
